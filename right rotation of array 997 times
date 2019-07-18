@@ -1,0 +1,28 @@
+#include<stdio.h>
+
+int main()
+{                    
+	int n,i,j;
+	printf("ENTER THE SIZE OF ARRAY = ");
+	scanf("%d",&n);
+	int a[n+1];
+	printf("ENTER THE ARRAY \n");
+	for(i=0;i<n;i++)
+	   scanf("%d",&a[i]);
+	
+	int num=997%n;      //997 times rotations
+//	printf("%d",num);
+
+  for(j=0;j<num;j++)	
+  {
+  	for(i=n;i>0;i--)
+	  {
+	    a[i]=a[i-1];
+	  } 
+	 a[0]=a[n];
+	}   
+	for(i=0;i<n;i++)
+	{
+		printf("%d",a[i]);
+	}
+}
