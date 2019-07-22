@@ -1,0 +1,47 @@
+#include<stdio.h>
+struct elem
+{
+int val;
+int index;
+};
+
+int comparator(const void * a,const void * b)
+{
+	int l,r;
+    l = ((struct elem *)a)->val;
+    r = ((struct elem *)b)->val;
+    return (l - r);
+}
+
+int main()
+{
+    int n,i;
+    printf("Enter the size of array:");
+    scanf("%d",&n);
+    
+    int a[n];
+    struct elem arr[n];
+    printf("Enter the elements of array:");
+    for(i=0;i<n;i++)
+    {
+      scanf("%d",&a[i]);
+      arr[i].val=a[i]; 
+      arr[i].index=i;
+    }
+    qsort(arr,n,sizeof(arr[0]),comparator);
+
+    int min,d;
+	min=arr[0].index;
+    int max=0;
+    for(i=1;i<n;i++)
+    {
+         d=arr[i].index-min;
+         if(d>max)
+         max=d;
+         if(arr[i].index<min)
+          min=arr[i].index;
+    }
+    printf("%d",max);
+
+    return 0;
+}
