@@ -1,0 +1,66 @@
+#include<stdio.h>
+
+struct elem
+{
+int val;
+//int index;
+};
+
+int comparator(const void * a,const void * b)
+{
+	int l,r;
+    l = ((struct elem *)a)->val;
+    r = ((struct elem *)b)->val;
+    return (l - r);
+}
+
+int main()
+{
+  int n,m,i,j,k;
+  printf("ENTER THE SIZE OF IST ARRAY = ");
+  scanf("%d",&n);
+  int a1[n];
+  printf("ENTER THE ELEMENTS OF THE ARRAY = ");
+  for(i=0;i<n;i++)
+  scanf("%d",&a1[i]);
+
+   printf("ENTER THE SIZE OF 2nd ARRAY = ");
+  scanf("%d",&m);
+  int a2[m];
+  printf("ENTER THE ELEMENTS OF THE ARRAY = ");
+  for(i=0;i<m;i++)
+  scanf("%d",&a2[i]);
+  
+  int min=n<m?n:m;
+  int res[min];
+  
+  qsort(a1,n,sizeof(a1[0]),comparator);
+   qsort(a2,m,sizeof(a2[0]),comparator);
+
+   /* for(i=0;i<n;i++)
+    printf("%d",a1[i]);
+   for(i=0;i<m;i++)
+    printf("%d",a2[i]);*/
+    
+    i=0;
+    j=0;
+    k=0;
+    while(i<n && j<m)
+    {
+
+        if(a1[i]<a2[j])
+            i++;
+        else if(a2[j]<a1[i])
+            j++;
+        else
+        {
+           res[k]=a1[i];
+           k++;
+           i++;
+           j++;
+        }
+    }
+
+     for(i=0;i<min;i++)
+    printf("%d",res[i]);
+}
