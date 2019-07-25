@@ -1,0 +1,72 @@
+#include<stdio.h>
+struct elem
+{
+  int value;
+};
+
+int comparator(const void * a,const void *b)
+{
+    int l,r;
+    l=((struct elem *)a)->value;
+    r=((struct elem *)b)->value;
+    return (l-r);
+}
+
+
+int main()
+{
+  int n,m,i,j,p,k;
+  printf("ENTER THE SIZE OF IST ARRAY = ");
+  scanf("%d",&n);
+  int a1[n];
+  printf("ENTER THE ELEMENTS OF THE ARRAY = ");
+  for(i=0;i<n;i++)
+  scanf("%d",&a1[i]);
+
+
+  printf("ENTER THE SIZE OF 2nd ARRAY = ");
+  scanf("%d",&m);
+  int a2[m];
+  printf("ENTER THE ELEMENTS OF THE ARRAY = ");
+  for(i=0;i<m;i++)
+  scanf("%d",&a2[i]);
+
+  printf("ENTER THE SIZE OF 3rd ARRAY = ");
+  scanf("%d",&k);
+  int a3[k];
+  printf("ENTER THE ELEMENTS OF THE ARRAY = ");
+  for(i=0;i<k;i++)
+  scanf("%d",&a3[i]);
+
+  qsort(a1,n,sizeof(a1[0]),comparator);
+  qsort(a2,m,sizeof(a2[0]),comparator);
+  qsort(a3,k,sizeof(a3[0]),comparator);
+
+   int a,b,c,max,min,minn=1000,first,second,third,diff;
+   i=0,j=0,p=0;
+   while(i<n && j<m && p<k)
+   {
+     a=a1[i];
+     b=a2[j];
+     c=a3[p];
+     max = a > b ? ( a > c ? a : c) : (b > c ? b : c) ;
+     min = a < b ? ( a < c ? a : c) : (b < c ? b : c) ;
+     diff=max-min;
+     //min=diff;
+     if(minn>diff)
+     {
+        minn=diff;
+        first=a1[i];
+        second=a2[j];
+         third=a3[p];
+      }
+      if(min==a)
+         i++;
+      else if(min==b)
+          j++;
+      else if(min==c)
+          p++;
+    }
+    printf("Triplet = %d %d %d\n",first,second,third);
+     printf("Absolute difference = %d",minn);
+}
