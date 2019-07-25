@@ -1,0 +1,62 @@
+#include<stdio.h>
+
+struct elem
+{
+    int val;
+};
+
+int comparator(const void * a,const void * b)
+{
+	int l,r;
+    l = ((struct elem *)a)->val;
+    r = ((struct elem *)b)->val;
+    return (l - r);
+}
+
+int main()
+{
+  int n,m,i,j,k,t;
+  printf("ENTER THE SIZE OF ARRAY = ");
+  scanf("%d",&n);
+  int a[n];
+  printf("ENTER THE ELEMENTS OF THE ARRAY = ");
+  for(i=0;i<n;i++)
+  scanf("%d",&a[i]);
+
+  printf("ENTER THE TARGET NUMBER = ");
+  scanf("%d",&t);
+
+  qsort(a,n,sizeof(a[0]),comparator);
+
+
+  int A,B,C,sum=0,diff=0,min=1000;
+
+
+   for(i=0;i<n;i++)
+  {
+
+      j=i+1,k=n-1;
+      while(j<k)
+    {
+
+       A=a[i];
+       B=a[j];
+       C=a[k];
+       sum=A+B+C;
+       diff=abs(sum-t);
+
+       if(min>diff)
+       {
+          min=diff;
+       }
+       if(sum<t)
+        j++;
+       else
+        k--;
+     }
+
+   }
+    printf("numbers = (%d, %d, %d )\n",A,B,C);
+    printf("3SUM Closest differece = %d",min);
+
+  }
